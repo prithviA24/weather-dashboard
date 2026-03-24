@@ -1,0 +1,16 @@
+name: First Pipeline
+
+on:
+  push:
+    branches: ["main"]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Get code
+        uses: actions/checkout@v3
+
+      - name: Print message
+        run: echo "Pipeline is working!"

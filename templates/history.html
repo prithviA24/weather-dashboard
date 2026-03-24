@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Weather History</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        body { font-family: Arial, sans-serif; background: #f0f4f8; padding: 20px; }
+        .container { max-width: 800px; margin: auto; background: white; padding: 20px; border-radius: 10px; }
+        a { color: #3b82f6; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>🌡️ Temperature History</h2>
+        <a href="/">← Back to search</a>
+        <br><br>
+        <canvas id="tempChart" height="100"></canvas>
+    </div>
+    <script>
+        const snapshots = {{ snapshots | tojson }};
+        const labels = snapshots.map(s => s.city + " " + s.timestamp);
+        const temps = snapshots.map(s => s.temperature);
+
+        new Chart(document.getElementById("tempChart"), {
+            type: "line",
+            data: {
+                labels: labels,
+                datasets: [{
+                    label: "Temperature (°C)",
+                    data: temps,
+                    borderColor: "#3b82f6",
+                    backgroundColor: "rgba(59,130,246,0.1)",
+                    tension: 0.3,
+                    pointRadius: 5,
+                    fill: true
+                }]
+            },
+            options: {
+                responsive: true,
+                plugins: { legend: { position: "top" } },
+                scales: { y: { beginAtZero: false } }
+            }
+        });
+    </script>
+</body>
+</html>

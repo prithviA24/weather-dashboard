@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Weather Dashboard</title>
+    <style>
+        body { font-family: Arial, sans-serif; max-width: 500px; margin: 60px auto; background: #f0f4f8; }
+        h1 { color: #2d3748; }
+        form { display: flex; gap: 10px; margin-bottom: 10px; }
+        input { flex: 1; padding: 10px; border: 1px solid #cbd5e0; border-radius: 6px; font-size: 16px; }
+        button { padding: 10px 20px; background: #4299e1; color: white; border: none; border-radius: 6px; cursor: pointer; font-size: 16px; }
+        .card { background: white; padding: 24px; border-radius: 10px; box-shadow: 0 2px 8px rgba(0,0,0,0.1); }
+        .card h2 { margin: 0 0 16px; color: #2d3748; }
+        .row { display: flex; justify-content: space-between; padding: 8px 0; border-bottom: 1px solid #e2e8f0; }
+        .error { color: red; margin-bottom: 16px; }
+        .history-link { display: block; margin-bottom: 20px; color: #4299e1; text-decoration: none; font-size: 15px; }
+    </style>
+</head>
+<body>
+    <h1>Weather Dashboard</h1>
+    <form method="POST">
+        <input type="text" name="city" placeholder="Enter city name..." required>
+        <button type="submit">Search</button>
+    </form>
+    <a class="history-link" href="/history">📈 View Temperature History</a>
+    {% if error %}
+        <p class="error">{{ error }}</p>
+    {% endif %}
+    {% if weather %}
+    <div class="card">
+        <h2>{{ weather.city }}, {{ weather.country }}</h2>
+        <div class="row"><span>Temperature</span><span>{{ weather.temperature }}°C</span></div>
+        <div class="row"><span>Feels like</span><span>{{ weather.feels_like }}°C</span></div>
+        <div class="row"><span>Humidity</span><span>{{ weather.humidity }}%</span></div>
+        <div class="row"><span>Description</span><span>{{ weather.description }}</span></div>
+        <div class="row"><span>Wind speed</span><span>{{ weather.wind_speed }} m/s</span></div>
+    </div>
+    {% endif %}
+</body>
+</html>
