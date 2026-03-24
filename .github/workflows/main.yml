@@ -36,4 +36,4 @@ jobs:
         run: docker tag weather-app ${{ secrets.DOCKER_USERNAME }}/weather-app:latest
 
       - name: Push Docker image
-        run: docker push ${{ secrets.DOCKER_USERNAME }}/weather-app:latest
+        run: docker push ${{ secrets.DOCKER_USERNAME }}/weather-app:latest # retry docker login
