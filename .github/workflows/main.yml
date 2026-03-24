@@ -25,3 +25,6 @@ jobs:
 
       - name: Test Flask app import
         run: python -c "import app"
+
+      - name: Build Docker image
+        run: docker build -t weather-app .
