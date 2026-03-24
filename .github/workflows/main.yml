@@ -27,4 +27,4 @@ jobs:
         run: python -c "import app"
 
       - name: Build Docker image
-        run: docker build -t weather-app .
+        run: docker build -t weather-app . # trigger pipeline
