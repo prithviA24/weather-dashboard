@@ -22,3 +22,6 @@ jobs:
 
       - name: Test Python
         run: python --version
+
+      - name: Test Flask app import
+        run: python -c "import app"
